@@ -233,6 +233,28 @@ body {
 .bubble .word .miss { color: #fff; background: var(--bad); border-radius: 6px; padding: 0 2px; }
 .bubble .typed { text-decoration: line-through; color: #b99; }
 .bubble .reason { margin: 8px 0 0; line-height: 1.35; }
+.defs:empty { display: none; }
+.defs {
+  text-align: left;
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  background: var(--cream);
+  border-radius: 16px;
+}
+.defs-head { font-weight: 700; color: var(--wood); }
+.defs .base { font-size: .85rem; color: #9a8467; }
+.defs ol { margin: 6px 0 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 4px; line-height: 1.35; }
+.defs .pos {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--leaf);
+  border-radius: 999px;
+  padding: 0 8px;
+  margin-right: 2px;
+  vertical-align: 1px;
+}
 .bubble .alts { margin: 6px 0 0; font-size: .9rem; color: #9a8467; }
 
 .controls { position: relative; z-index: 3; margin-top: 18px; display: flex; gap: 12px; }

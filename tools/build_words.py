@@ -154,7 +154,7 @@ CURATED = {
     "yacht": "Silent 'ch' — from Dutch 'jacht'.",
 }
 
-BLOCK = {"fuck", "shit", "cunt", "nigger", "bitch", "wank", "piss", "faggot", "slut", "whore"}
+BLOCK = {"larry", "youtube", "fuck", "shit", "cunt", "nigger", "bitch", "wank", "piss", "faggot", "slut", "whore"}
 SILENT_CLUSTERS = ["kn", "gn", "wr", "mb", "mn", "ps", "rh", "gh", "sc", "bt", "stl", "wh", "gu", "bu", "ch"]
 VOWELS = set("aeiou")
 SUFFIX_PAIRS = [

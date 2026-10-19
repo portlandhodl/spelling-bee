@@ -23,6 +23,7 @@
   let current = null;            // index into words
   let lastTyped = "";
   let showMs = DEFAULT_SHOW_MS;
+  let defsReady = Promise.resolve({});  // word -> { d: [[partOfSpeech, definition]...], b?: baseWord }
 
   // ---------- Session state ----------
 
@@ -237,6 +238,7 @@
     if (ok) {
       html = `<div class="bubble good">
         <div class="title">${pick(CHEERS)} +${gained} 🍯</div>
+        <div class="defs" id="defs"></div>
         <p class="reason"><b>Tip:</b> ${esc(entry.r)}</p>
       </div>`;
     } else {
@@ -252,6 +254,20 @@
       </div>`;
     }
     feedback.innerHTML = html;
+    if (ok) {
+      const shownFor = current;
+      defsReady.then((defs) => {
+        const box = $("defs");
+        if (box && shownFor === current) box.innerHTML = definitionsHtml(entry.w, defs[entry.w]);
+      });
+    }
+  }
+
+  function definitionsHtml(word, info) {
+    if (!info) return "";
+    const base = info.b ? `<div class="base">from <b>${esc(info.b)}</b></div>` : "";
+    const items = info.d.map(([pos, def]) => `<li><span class="pos">${esc(pos)}</span> ${esc(def)}</li>`).join("");
+    return `<div class="defs-head">📖 ${esc(word)}</div>${base}<ol>${items}</ol>`;
   }
 
   function renderScore() {
@@ -339,6 +355,8 @@
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then((data) => {
       words = data;
+      // Definitions are only needed after a correct answer, so load them in the background.
+      defsReady = fetch("defs.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({}));
       state = loadState();
       save();
       renderScore();
