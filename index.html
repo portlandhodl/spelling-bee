@@ -2,11 +2,100 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#8fd3f4">
   <title>Spelling Bee</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐝</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Spelling Bee</h1>
-  <p>Coming soon.</p>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="bee" viewBox="0 0 120 90">
+        <g class="wing wing-back" fill="#ffffff" fill-opacity=".85" stroke="#9cc8e0" stroke-width="3"><ellipse cx="52" cy="22" rx="17" ry="24" transform="rotate(-25 52 22)"/></g>
+        <path d="M14 50 L2 54 L14 58 Z" fill="#3b2a1a"/>
+        <ellipse cx="50" cy="54" rx="38" ry="28" fill="#ffcf3f" stroke="#3b2a1a" stroke-width="4"/>
+        <path d="M34 28 Q28 54 34 80" stroke="#3b2a1a" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M54 26 Q48 54 54 82" stroke="#3b2a1a" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <circle cx="88" cy="48" r="20" fill="#ffcf3f" stroke="#3b2a1a" stroke-width="4"/>
+        <circle cx="94" cy="44" r="4" fill="#3b2a1a"/>
+        <circle cx="95.5" cy="42.5" r="1.4" fill="#fff"/>
+        <ellipse cx="96" cy="55" rx="5" ry="3" fill="#ff9aa2" opacity=".8"/>
+        <path d="M86 60 Q92 64 98 60" stroke="#3b2a1a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M84 30 Q82 14 74 10" stroke="#3b2a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="74" cy="10" r="4" fill="#3b2a1a"/>
+        <path d="M94 30 Q98 14 106 10" stroke="#3b2a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="106" cy="10" r="4" fill="#3b2a1a"/>
+        <g class="wing wing-front" fill="#ffffff" fill-opacity=".85" stroke="#9cc8e0" stroke-width="3"><ellipse cx="62" cy="24" rx="16" ry="23" transform="rotate(15 62 24)"/></g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="top">
+    <h1><span class="leaf" aria-hidden="true">🌱</span> Spelling Bee</h1>
+    <p class="tagline">Watch the word, then spell it from memory!</p>
+  </header>
+
+  <main class="layout">
+    <section class="stage" id="stage" aria-label="Spelling game">
+      <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+
+      <div class="slot" id="slot">
+        <form id="answerForm" autocomplete="off">
+          <label for="answer" class="sr-only">Type the word</label>
+          <input id="answer" type="text" inputmode="text" autocomplete="off" autocorrect="off"
+                 autocapitalize="none" spellcheck="false" enterkeyhint="done" placeholder="Type it here…">
+        </form>
+        <div class="card" id="card" aria-live="polite"><span id="cardWord"></span></div>
+      </div>
+
+      <svg class="bee" id="bee1" aria-hidden="true"><use href="#bee"/></svg>
+      <svg class="bee wiper" id="bee2" aria-hidden="true"><use href="#bee"/></svg>
+      <div class="trail" id="trail" aria-hidden="true"></div>
+
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+
+      <div class="controls">
+        <button class="btn primary" id="goBtn" type="button">Start buzzing!</button>
+      </div>
+      <div class="grass" aria-hidden="true"></div>
+    </section>
+
+    <aside class="scorecard" aria-label="Score card">
+      <div class="tab">Score Card</div>
+      <div class="honey">
+        <span class="honey-label">🍯 Honey</span>
+        <span class="honey-value" id="sHoney">0</span>
+      </div>
+      <dl class="stats">
+        <div><dt>Correct</dt><dd id="sCorrect">0</dd></div>
+        <div><dt>Missed</dt><dd id="sWrong">0</dd></div>
+        <div><dt>Streak</dt><dd id="sStreak">0</dd></div>
+        <div><dt>Best</dt><dd id="sBest">0</dd></div>
+        <div><dt>Accuracy</dt><dd id="sAcc">–</dd></div>
+        <div><dt>Seen</dt><dd><span id="sSeen">0</span><small> / <span id="sTotal">5000</span></small></dd></div>
+      </dl>
+      <div class="progress" aria-hidden="true"><div class="bar" id="sBar"></div></div>
+
+      <h2>Recent words</h2>
+      <ol class="history" id="history"><li class="empty">Nothing yet — let's go!</li></ol>
+
+      <h2>Tricky words</h2>
+      <ul class="tricky" id="tricky"><li class="empty">No misses yet 🌼</li></ul>
+
+      <button class="btn small" id="resetBtn" type="button">New session</button>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    Word data built from Wikipedia's
+    <a href="https://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings">Lists of common misspellings</a>
+    (CC BY-SA) and the <a href="https://www.dcs.bbk.ac.uk/~ROGER/corpora.html">Birkbeck spelling error corpus</a>.
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
