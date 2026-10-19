@@ -2,7 +2,8 @@
   "use strict";
 
   const STORE_KEY = "spellingbee:v1";
-  const SHOW_MS = 1500;          // how long the word stays fully visible
+  const PREFS_KEY = "spellingbee:prefs";
+  const DEFAULT_SHOW_MS = 500;   // how long the word stays fully visible
   const REQUEUE_AFTER = 6;       // missed words come back after this many rounds
   const HISTORY_MAX = 30;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -21,6 +22,7 @@
   let phase = "idle";            // idle | showing | typing | result
   let current = null;            // index into words
   let lastTyped = "";
+  let showMs = DEFAULT_SHOW_MS;
 
   // ---------- Session state ----------
 
@@ -118,7 +120,7 @@
   async function showWord() {
     if (reducedMotion) {
       card.style.clipPath = "inset(0 0 0 0)";
-      await sleep(SHOW_MS);
+      await sleep(showMs);
       card.style.clipPath = "inset(0 0 0 100%)";
       return;
     }
@@ -131,9 +133,9 @@
     await Promise.race([fullyShown, done1]);
     card.style.clipPath = "inset(0 0 0 0)";
 
-    // launch the wiper so it reaches the card exactly SHOW_MS after the reveal
+    // launch the wiper so it reaches the card exactly showMs after the reveal
     const lead = leadTime(geometry(bee2));
-    await sleep(Math.max(0, SHOW_MS - lead));
+    await sleep(Math.max(0, showMs - lead));
     let lastSpark = 0;
     await Promise.all([done1, fly(bee2, (p, x, y, g) => {
       card.style.clipPath = `inset(0 0 0 ${p * 100}%)`;
@@ -305,6 +307,20 @@
     else if (phase === "result") input.value = lastTyped;
   });
   input.addEventListener("paste", (e) => { if (phase !== "typing") e.preventDefault(); });
+
+  // Display time is a preference, so it lives in localStorage and survives new sessions.
+  const showTime = $("showTime"), showTimeOut = $("showTimeOut");
+  function setShowTime(seconds) {
+    const v = Math.min(Number(showTime.max), Math.max(Number(showTime.min), Number(seconds) || DEFAULT_SHOW_MS / 1000));
+    showMs = Math.round(v * 1000);
+    showTime.value = v;
+    showTimeOut.textContent = `${v}s`;
+  }
+  try { setShowTime(JSON.parse(localStorage.getItem(PREFS_KEY))?.showSeconds); } catch (_) { setShowTime(); }
+  showTime.addEventListener("input", () => {
+    setShowTime(showTime.value);
+    try { localStorage.setItem(PREFS_KEY, JSON.stringify({ showSeconds: showMs / 1000 })); } catch (_) { /* storage disabled */ }
+  });
 
   $("resetBtn").addEventListener("click", () => {
     if (phase === "showing") return;

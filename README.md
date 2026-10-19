@@ -1,6 +1,6 @@
 # spelling-bee
 
-A bee-themed spelling trainer: a bee flies a word across the screen, a second bee wipes it away 1.5 s later, and you type it from memory.
+A bee-themed spelling trainer: a bee flies a word across the screen, a second bee wipes it away after a short pause (0.5 s by default, adjustable), and you type it from memory.
 
 Play: https://portlandhodl.github.io/spelling-bee/
 

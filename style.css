@@ -337,6 +337,9 @@ body {
 .tricky li { padding: 4px 10px; background: #ffe3df; }
 .tricky li .n { color: var(--bad); font-weight: 700; }
 li.empty { background: none !important; color: #b8a58a; padding-left: 0 !important; }
+.setting { display: flex; align-items: center; gap: 12px; }
+.setting output { min-width: 3.2em; text-align: right; font-weight: 700; font-size: 1.15rem; }
+.setting input[type="range"] { flex: 1; height: 28px; margin: 0; accent-color: var(--honey-dark); cursor: pointer; }
 #resetBtn { margin-top: 18px; width: 100%; }
 
 .foot { text-align: center; font-size: .8rem; padding: 10px 16px 18px; color: var(--leaf-dark); }

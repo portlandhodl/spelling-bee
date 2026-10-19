@@ -86,6 +86,12 @@
       <h2>Tricky words</h2>
       <ul class="tricky" id="tricky"><li class="empty">No misses yet 🌼</li></ul>
 
+      <h2><label for="showTime">Word display time</label></h2>
+      <div class="setting">
+        <input type="range" id="showTime" min="0.5" max="5" step="0.25" value="0.5">
+        <output id="showTimeOut" for="showTime">0.5s</output>
+      </div>
+
       <button class="btn small" id="resetBtn" type="button">New session</button>
     </aside>
   </main>
