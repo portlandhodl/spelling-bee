@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const STORE_KEY = "spellingbee:v1";
+  const STORE_KEY = "spellingbee:v2";
   const PREFS_KEY = "spellingbee:prefs";
   const DEFAULT_SHOW_MS = 500;   // how long the word stays fully visible
   const REQUEUE_AFTER = 6;       // missed words come back after this many rounds
@@ -266,7 +266,7 @@
   function definitionsHtml(word, info) {
     if (!info) return "";
     const base = info.b ? `<div class="base">from <b>${esc(info.b)}</b></div>` : "";
-    const items = info.d.map(([pos, def]) => `<li><span class="pos">${esc(pos)}</span> ${esc(def)}</li>`).join("");
+    const items = info.d.map(([pos, def]) => `<li>${pos ? `<span class="pos">${esc(pos)}</span> ` : ""}${esc(def)}</li>`).join("");
     return `<div class="defs-head">📖 ${esc(word)}</div>${base}<ol>${items}</ol>`;
   }
 

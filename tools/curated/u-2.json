@@ -1,0 +1,18 @@
+[
+{"w": "ulcerous", "t": 2, "m": ["ulcerus", "ulserous", "ulceros"], "r": "Ulcer + ous: keep the c, ul-CER-ous.", "d": "having or like an ulcer"},
+{"w": "umbel", "t": 3, "m": ["umbell", "umbal", "umbbel"], "r": "Latin 'umbella' (sunshade): just umb + el.", "d": "a flower cluster shaped like an umbrella"},
+{"w": "unacceptable", "t": 1, "m": ["unacceptible", "unaceptable", "unacseptable"], "r": "Un + accept + able: double c, ending -able.", "d": "not satisfactory or allowable"},
+{"w": "unbelievable", "t": 1, "m": ["unbeleivable", "unbelieveable", "unbelievible"], "r": "I before e in believe, then drop the e before -able.", "d": "too unlikely to be believed"},
+{"w": "unconquerable", "t": 2, "m": ["unconquorable", "unconquerible", "unconquereable"], "r": "Un + conquer + able: qu, then -er-able.", "d": "impossible to defeat"},
+{"w": "unexceptionable", "t": 3, "m": ["unexceptionible", "unexceptionabel", "unexeptionable"], "r": "Means 'beyond objection', not 'ordinary' (that's unexceptional).", "d": "not open to objection; entirely acceptable"},
+{"w": "unflappable", "t": 2, "m": ["unflapable", "unflappible", "unflapabel"], "r": "Flap doubles its p before -able: flap-P-able.", "d": "calm in a crisis"},
+{"w": "unforgivable", "t": 1, "m": ["unforgiveable", "unforgivible", "unforgivabel"], "r": "Drop the e of forgive before -able.", "d": "so bad it cannot be forgiven"},
+{"w": "unfulfilled", "t": 1, "m": ["unfullfilled", "unfulfiled", "unfullfiled"], "r": "Ful + fill: one l in 'ful', then double l in -filled.", "d": "not satisfied or achieved"},
+{"w": "unicellular", "t": 2, "m": ["unicelular", "unicellullar", "unicelluler"], "r": "Uni + cell + ular: double l, then single l.", "d": "consisting of a single cell"},
+{"w": "uniqueness", "t": 1, "m": ["uniquness", "uniqueniss", "uniquenes"], "r": "Unique + ness: keep the e, then double s.", "d": "the quality of being one of a kind"},
+{"w": "unpretentious", "t": 1, "m": ["unpretencious", "unpretentous", "unpretensious"], "r": "Pretense becomes pretentious with a t: -tious.", "d": "modest; not showy"},
+{"w": "unruliness", "t": 2, "m": ["unrulyness", "unrulliness", "unrulines"], "r": "Unruly changes y to i before -ness.", "d": "disorderly and disruptive behavior"},
+{"w": "unsheathe", "t": 2, "m": ["unsheath", "unshethe", "unsheeth"], "r": "The verb ends -the (soft th); the noun sheath has no e.", "d": "to draw a weapon from its sheath"},
+{"w": "urinalysis", "t": 2, "m": ["urinanalysis", "urinalisis", "urinallysis"], "r": "Urine + analysis merged: urin-ALYSIS, no extra 'an'.", "d": "a medical analysis of urine"},
+{"w": "utilize", "t": 1, "m": ["utillize", "utelize", "utilyze"], "r": "Like utility: u-ti-LIZE, single l.", "d": "to make practical use of"}
+]
