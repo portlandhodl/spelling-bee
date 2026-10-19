@@ -1,3 +1,3 @@
 # spelling-bee
 
-Hosted on GitHub Pages: https://russeree.github.io/spelling-bee/
+Hosted on GitHub Pages: https://portlandhodl.github.io/spelling-bee/
